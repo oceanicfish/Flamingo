@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import ARKit
+import RealityKit
 
 struct ARSceneView : View {
     init() {
@@ -16,20 +18,24 @@ struct ARSceneView : View {
     var body: some View {
         NavigationView{
             ZStack {
-                VStack {
-                    Spacer()
-                    HStack{
-                        Spacer()
-                        Text("AR Sence View")
-                        Spacer()
-                    }
-                    Spacer()
-                }
+                ARViewContainer().edgesIgnoringSafeArea(.all)
             }
             .navigationBarHidden(true)
             .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
         }
         .navigationBarTitle("", displayMode: .inline)
+    }
+    
+    struct ARViewContainer : UIViewRepresentable {
+        
+        func makeUIView(context: Context) -> ARView {
+            let arView = ARView(frame: .zero, cameraMode: .ar, automaticallyConfigureSession: true)
+            return arView
+        }
+        
+        func updateUIView(_ uiView: ARView, context: Context) {
+            
+        }
     }
     
 }
