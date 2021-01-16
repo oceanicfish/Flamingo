@@ -8,14 +8,30 @@
 import SwiftUI
 
 struct BlankView: View {
-    @Binding var selectedCard : Card?
+    
+    init() {
+        UINavigationBar.appearance().barTintColor = .clear
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+    }
+    
     var body: some View {
-        VStack {
-            Text("Blank View")
+        NavigationView{
+            ZStack {
+                VStack {
+                    HStack{
+                        Spacer()
+                        Text("Blank View")
+                            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                            .font(.system(size: 50))
+                        Spacer()
+                    }.padding(.top, 60)
+                    Spacer()
+                }
+            }
+            .navigationBarHidden(true)
+            .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
         }
-        .onTapGesture(count: 2, perform: {
-            print("double tapped")
-            selectedCard = nil
-        })
+        .navigationBarTitle("", displayMode: .inline)
     }
 }

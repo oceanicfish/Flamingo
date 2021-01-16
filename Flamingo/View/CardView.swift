@@ -9,61 +9,31 @@ import SwiftUI
 
 var tabs = ["スタティック", "アニメーション", "インタラクティブ", "メディア"]
 
-//class selectedCardViewModel: ObservableObject {
-//
-//    @Published var selected : Card?
-//
-//    func setCard(card: Card) {
-//        self.selected = card
-//    }
-//
-//    func clear() {
-//        self.selected = nil
-//    }
-//}
-
-//    .init(title: "Static One", subTitle: "Static Layout No.1", image: "square.stack.3d.down.right", tag: "スタティック", color: Color.green, content: AnyView(ARSceneView())),
-//    .init(title: "Static Two", subTitle: "Static Layout No.1", image: "cube", tag: "スタティック", color: Color.red, content: AnyView(BlankView(selectedCard: $selectedCard))),
-//    .init(title: "Static Three", subTitle: "Static Layout No.1", image: "rectangle.on.rectangle.angled", tag: "スタティック", color: Color.pink, content: AnyView(BlankView(selectedCard: $selectedCard))),
-//    .init(title: "Static Four", subTitle: "Static Layout No.1", image: "rectangle.and.arrow.up.right.and.arrow.down.left", tag: "スタティック", color: Color.blue, content: AnyView(BlankView(selectedCard: $selectedCard))),
-//    .init(title: "Animation One", subTitle: "Animation Layout No.1", image: "square.stack.3d.down.dottedline", tag: "アニメーション", color: Color.yellow, content: AnyView(BlankView(selectedCard: $selectedCard))),
-//    .init(title: "Interactive One", subTitle: "Interactive Layout No.1", image: "livephoto", tag: "インタラクティブ", color: Color.purple, content: AnyView(BlankView(selectedCard: $selectedCard))),
-//    .init(title: "AR AVPlayer", subTitle: "play video in AR sence", image: "arkit", tag: "メディア", color: Color.orange, content: AnyView(ARSceneView()))
+var cards: [Card] = [
+    Card(title: "Static One", subTitle: "Static Layout No.1", image: "square.stack.3d.down.right", tag: "スタティック", color: Color.green, content: AnyView(BlankView())),
+    Card(title: "Static Two", subTitle: "Static Layout No.1", image: "cube", tag: "スタティック", color: Color.red, content: AnyView(BlankView())),
+    Card(title: "Static Three", subTitle: "Static Layout No.1", image: "rectangle.on.rectangle.angled", tag: "スタティック", color: Color.pink, content: AnyView(ARSceneView())),
+    Card(title: "Static Four", subTitle: "Static Layout No.1", image: "rectangle.and.arrow.up.right.and.arrow.down.left", tag: "スタティック", color: Color.blue, content: AnyView(ARSceneView())),
+    Card(title: "Animation One", subTitle: "Animation Layout No.1", image: "square.stack.3d.down.dottedline", tag: "アニメーション", color: Color.yellow, content: AnyView(ARSceneView())),
+    Card(title: "Interactive One", subTitle: "Interactive Layout No.1", image: "livephoto", tag: "インタラクティブ", color: Color.purple, content: AnyView(ARSceneView())),
+    Card(title: "AR AVPlayer", subTitle: "play video in AR sence", image: "arkit", tag: "メディア", color: Color.orange, content: AnyView(ARSceneView()))
+]
 
 struct CardView : View {
     
     @Environment(\.colorScheme) var colorScheme
     @State var selected = tabs[0]
-    @State var selectedCard : Card?
-    @State var presentARScene : Bool = false
-    @State var offset: CGSize = .zero
     @Namespace var namespace
     
-    var cards : [Card]
-    
-    init() {
-        self.cards = []
-        let stateOneCard : Card = Card(title: "Static One",
-                                       subTitle: "Static Layout No.1",
-                                       image: "square.stack.3d.down.right",
-                                       tag: "スタティック",
-                                       color: Color.green,
-                                       content: AnyView(BlankView(selectedCard: $selectedCard)))
-        self.cards.append(stateOneCard)
-        
-    }
-    
     var body: some View {
-        // view transaction
-        if (selectedCard != nil) {
-            selectedCard?.content
-        }else {
+        NavigationView {
+            // view transaction
             VStack {
                 // Header Area
                 HStack {
                     // Button Left
                     Button(action: {
-                        
+
                     }) {
                         Image(systemName: "line.horizontal.3")
                             .font(.system(size: 25, weight: .heavy))
@@ -82,7 +52,7 @@ struct CardView : View {
                 }
                 .padding(.horizontal, 5)
                 .padding(.top, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-                
+
                 // Scrollable Area
                 ScrollView {
                     VStack {
@@ -94,7 +64,7 @@ struct CardView : View {
                             Spacer()
                         }.padding(.horizontal, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                         .padding(.vertical, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-                        
+
                         // Tab Buttons Area
                         HStack {
                             ForEach(tabs, id: \.self) { tab in
@@ -105,28 +75,29 @@ struct CardView : View {
                                 }
                             }
                         }.padding(.horizontal, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-                        
+
                         // Card Area
                         LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2),content: {
                             ForEach(cards) { card in
                                 if card.tag == selected {
-                                    IndividualCardView(item: card,
-                                                       namespace: namespace,
-                                                       selectedCard: $selectedCard)
-                                        .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, 10)
+                                    NavigationLink(
+                                        destination: card.content.edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)) {
+                                            IndividualCardView(item: card, namespace: namespace).padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                                        }
                                 }
                             }
                         })
                     }
                     .padding(.top, 5)
                 }
-                
+
                 Spacer()
             }
             .gesture(swipeGesture)
             .animation(.linear)
+            .navigationBarTitle("", displayMode: .inline)
+            .navigationBarHidden(true)
         }
-        
     }
     
     var swipeGesture : some Gesture {

@@ -10,7 +10,6 @@ import SwiftUI
 struct IndividualCardView : View {
     var item : Card
     var namespace : Namespace.ID
-    @Binding var selectedCard : Card?
     
     var body: some View {
         VStack {
@@ -32,6 +31,7 @@ struct IndividualCardView : View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealWidth: 60, maxWidth: .infinity, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 60, maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .foregroundColor(.black)
                 Spacer()
             }.padding(.all, 10)
             
@@ -50,10 +50,7 @@ struct IndividualCardView : View {
             Spacer(minLength: 50)
         }
         .background(item.color.cornerRadius(10))
-        .onTapGesture {
-            print("\(item.title) is clicked")
-            selectedCard = item
-        }
+        
     }
     
 }
