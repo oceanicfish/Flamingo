@@ -43,12 +43,12 @@ struct ARSceneView : View {
             }
             
             arView.session.run(config)
-            
-            let modelEntity = try!
-                ModelEntity.loadModel(named: "tv_retro.usdz")
-            let anchorEntity = AnchorEntity(plane: .any)
-            anchorEntity.addChild(modelEntity)
-            arView.scene.addAnchor(anchorEntity)
+//            
+//            let modelEntity = try!
+//                ModelEntity.loadModel(named: "tv_retro.usdz")
+//            let anchorEntity = AnchorEntity(plane: .any)
+//            anchorEntity.addChild(modelEntity)
+//            arView.scene.addAnchor(anchorEntity)
             
             print("[AR Scene] creating is done.")
             

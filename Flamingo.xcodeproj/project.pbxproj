@@ -12,6 +12,7 @@
 		2F2C04D02581E80600E20B6D /* IndividualCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2C04CF2581E80600E20B6D /* IndividualCardView.swift */; };
 		2F5FF0862588EFA8008FDD09 /* BlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FF0852588EFA8008FDD09 /* BlankView.swift */; };
 		2F8370F22589D39A00116B64 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F8370F12589D39A00116B64 /* GoogleService-Info.plist */; };
+		2F918E9925B4763D00D3AB8C /* tv_retro.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 2F918E9825B4763D00D3AB8C /* tv_retro.usdz */; };
 		2F9CC1D22590CE83001AF18F /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9CC1D12590CE83001AF18F /* BaseView.swift */; };
 		2FBEEB0F257E5EB50039013D /* FlamingoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBEEB0E257E5EB50039013D /* FlamingoApp.swift */; };
 		2FBEEB11257E5EB50039013D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBEEB10257E5EB50039013D /* ContentView.swift */; };
@@ -50,6 +51,7 @@
 		2F2C04CF2581E80600E20B6D /* IndividualCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualCardView.swift; sourceTree = "<group>"; };
 		2F5FF0852588EFA8008FDD09 /* BlankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankView.swift; sourceTree = "<group>"; };
 		2F8370F12589D39A00116B64 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2F918E9825B4763D00D3AB8C /* tv_retro.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = tv_retro.usdz; sourceTree = "<group>"; };
 		2F9CC1D12590CE83001AF18F /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		2FBEEB0B257E5EB50039013D /* Flamingo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flamingo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FBEEB0E257E5EB50039013D /* FlamingoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlamingoApp.swift; sourceTree = "<group>"; };
@@ -111,6 +113,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		2F918E9725B475BE00D3AB8C /* USDZModel */ = {
+			isa = PBXGroup;
+			children = (
+				2F918E9825B4763D00D3AB8C /* tv_retro.usdz */,
+			);
+			path = USDZModel;
+			sourceTree = "<group>";
+		};
 		2FBEEB02257E5EB50039013D = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +146,7 @@
 		2FBEEB0D257E5EB50039013D /* Flamingo */ = {
 			isa = PBXGroup;
 			children = (
+				2F918E9725B475BE00D3AB8C /* USDZModel */,
 				2F2C04C62581ABEB00E20B6D /* Model */,
 				2FBEEB3C257E5FEE0039013D /* View */,
 				2FBEEB0E257E5EB50039013D /* FlamingoApp.swift */,
@@ -321,6 +332,7 @@
 			files = (
 				2FBEEB16257E5EB70039013D /* Preview Assets.xcassets in Resources */,
 				2FBEEB13257E5EB70039013D /* Assets.xcassets in Resources */,
+				2F918E9925B4763D00D3AB8C /* tv_retro.usdz in Resources */,
 				2F8370F22589D39A00116B64 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
