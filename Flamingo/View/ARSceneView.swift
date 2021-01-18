@@ -29,11 +29,43 @@ struct ARSceneView : View {
     struct ARViewContainer : UIViewRepresentable {
         
         func makeUIView(context: Context) -> ARView {
+            
+            print("[AR Scene] creating ui view...")
+            
             let arView = ARView(frame: .zero, cameraMode: .ar, automaticallyConfigureSession: true)
+            
+            let config = ARWorldTrackingConfiguration()
+            config.planeDetection = [.horizontal, .vertical]
+            config.environmentTexturing = .automatic
+            
+            if ARWorldTrackingConfiguration.supportsSceneReconstruction(.mesh) {
+                config.sceneReconstruction = .mesh
+            }
+            
+            arView.session.run(config)
+            
+            let modelEntity = try!
+                ModelEntity.loadModel(named: "tv_retro.usdz")
+            let anchorEntity = AnchorEntity(plane: .any)
+            anchorEntity.addChild(modelEntity)
+            arView.scene.addAnchor(anchorEntity)
+            
+            print("[AR Scene] creating is done.")
+            
             return arView
         }
         
         func updateUIView(_ uiView: ARView, context: Context) {
+            
+            print("[AR Scene] updating ui view...")
+            
+            let modelEntity = try!
+                ModelEntity.loadModel(named: "tv_retro.usdz")
+            let anchorEntity = AnchorEntity(plane: .any)
+            anchorEntity.addChild(modelEntity)
+            uiView.scene.addAnchor(anchorEntity)
+            
+            print("[AR Scene] updating is done.")
             
         }
     }
